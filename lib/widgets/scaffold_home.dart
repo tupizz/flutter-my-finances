@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './new_transaction.dart';
+import './chart.dart';
 import './transaction_list.dart';
 import '../models/transaction.dart';
 
@@ -11,18 +12,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   id: 't1',
-    //   title: 'New shoes',
-    //   amount: 69.9,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 't2',
-    //   title: 'New T-shirts',
-    //   amount: 129.9,
-    //   date: DateTime.now(),
-    // ),
+    Transaction(
+      id: 't1',
+      title: 'New shoes',
+      amount: 69.9,
+      date: DateTime.now().subtract(Duration(days: 2)),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'New T-shirts',
+      amount: 129.9,
+      date: DateTime.now().subtract(Duration(days: 3)),
+    ),
   ];
 
   void _addNewTransaction(String gasto, double quantia) {
@@ -46,6 +47,14 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
+  List<Transaction> get _recentTransactions {
+    return _userTransactions
+        .where(
+          (tx) => tx.date.isAfter(DateTime.now().subtract(Duration(days: 7))),
+        )
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          Chart(recentTransactions: _recentTransactions),
           TransactionList(transactions: _userTransactions),
         ],
       ),
