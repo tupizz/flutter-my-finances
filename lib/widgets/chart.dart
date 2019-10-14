@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-import '../models/transaction.dart';
+import './../models/transaction.dart';
 import './chart_bar.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
 
-  Chart({this.recentTransactions});
+  Chart({this.recentTransactions}) {
+    initializeDateFormatting('pt_BR', null);
+  }
 
   List<Map<String, Object>> get groupedTransactionValues {
     return List.generate(7, (index) {
@@ -25,10 +28,11 @@ class Chart extends StatelessWidget {
       }
 
       return {
-        'day': DateFormat.E().format(weekDay).substring(0, 1),
+        'day':
+            DateFormat.E('pt_BR').format(weekDay).substring(0, 1).toUpperCase(),
         'amount': totalAmount,
       };
-    });
+    }).reversed.toList();
   }
 
   double get totalSpending {

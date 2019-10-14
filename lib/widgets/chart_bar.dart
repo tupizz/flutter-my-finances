@@ -11,27 +11,32 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        // A Linha na qual possui uma chance de estourar o tamanho envolvemos-na no objeto FittedBOx
-        FittedBox(
-          child: Row(
-            children: <Widget>[
-              Text(
-                'R\$',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 9,
+        // Colocamos um container em volta para garantir o height do cabeçalho de valores
+        Container(
+          height: 16,
+          // A Linha na qual possui uma chance de estourar o tamanho envolvemos-na
+          // no objeto FittedBox
+          child: FittedBox(
+            child: Row(
+              children: <Widget>[
+                Text(
+                  'R\$',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 9,
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 1,
-              ),
-              Text(
-                '${spendingAmount.toStringAsFixed(0)}',
-                style: TextStyle(
-                  color: Colors.black54,
+                SizedBox(
+                  width: 1,
                 ),
-              ),
-            ],
+                Text(
+                  '${spendingAmount.toStringAsFixed(0)}',
+                  style: TextStyle(
+                    color: Colors.black54,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         SizedBox(height: 4),
