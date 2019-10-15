@@ -24,14 +24,20 @@ class _MyHomePageState extends State<MyHomePage> {
       amount: 129.9,
       date: DateTime.now().subtract(Duration(days: 3)),
     ),
+    Transaction(
+      id: 't3',
+      title: 'iPhone',
+      amount: 333.90,
+      date: DateTime.now().subtract(Duration(days: 5)),
+    ),
   ];
 
-  void _addNewTransaction(String gasto, double quantia) {
+  void _addNewTransaction(String gasto, double quantia, DateTime chosenDate) {
     final transaction = Transaction(
       title: gasto,
       amount: quantia,
       id: DateTime.now().toIso8601String(),
-      date: DateTime.now(),
+      date: chosenDate,
     );
 
     setState(() {
