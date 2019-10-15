@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Minhas Finanças',
       theme: ThemeData(
         primarySwatch: Colors.purple,
+        errorColor: Colors.red[400],
         accentColor: Colors.orangeAccent,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
