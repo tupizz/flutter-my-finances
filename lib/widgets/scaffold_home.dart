@@ -12,24 +12,24 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   id: 't1',
-    //   title: 'New shoes',
-    //   amount: 210.9,
-    //   date: DateTime.now().subtract(Duration(days: 2)),
-    // ),
-    // Transaction(
-    //   id: 't2',
-    //   title: 'New T-shirts',
-    //   amount: 129.9,
-    //   date: DateTime.now().subtract(Duration(days: 3)),
-    // ),
-    // Transaction(
-    //   id: 't3',
-    //   title: 'iPhone',
-    //   amount: 333.90,
-    //   date: DateTime.now().subtract(Duration(days: 5)),
-    // ),
+    Transaction(
+      id: 't1',
+      title: 'New shoes',
+      amount: 210.9,
+      date: DateTime.now().subtract(Duration(days: 2)),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'New T-shirts',
+      amount: 129.9,
+      date: DateTime.now().subtract(Duration(days: 3)),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'iPhone',
+      amount: 333.90,
+      date: DateTime.now().subtract(Duration(days: 5)),
+    ),
   ];
 
   bool _showChart = true;
@@ -56,6 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void _showNewTransactionDialog(BuildContext ctx) {
     showModalBottomSheet(
         context: ctx,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(25.0),
+          ),
+        ),
+        isScrollControlled: true,
         builder: (_) {
           return NewTransaction(_addNewTransaction);
         });

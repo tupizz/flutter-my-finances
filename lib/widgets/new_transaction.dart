@@ -54,9 +54,14 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.only(
+          top: 30,
+          right: 20,
+          left: 20,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
@@ -118,7 +123,7 @@ class _NewTransactionState extends State<NewTransaction> {
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 10,
             ),
             RaisedButton(
               child: Text('Adicionar transação'),
@@ -129,7 +134,6 @@ class _NewTransactionState extends State<NewTransaction> {
           ],
         ),
       ),
-      elevation: 5,
     );
   }
 }
