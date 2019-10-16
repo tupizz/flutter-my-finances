@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class NoTransactions extends StatelessWidget {
+  double heightBox;
+
+  NoTransactions({this.heightBox});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -9,7 +13,7 @@ class NoTransactions extends StatelessWidget {
           height: 20,
         ),
         Container(
-          height: 100,
+          height: heightBox,
           child: Image.asset(
             'assets/images/waiting.png',
             fit: BoxFit.cover,

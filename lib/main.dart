@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import './widgets/scaffold_home.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  // Setamos a obrigatóriedade de estar no modo
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitUp,
+  // ]);
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
