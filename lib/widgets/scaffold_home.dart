@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import './new_transaction.dart';
@@ -81,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
-      title: Text('Minhas Finanças'),
+      title: const Text('Minhas Finanças'),
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.add),
@@ -112,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('Mostrar gráfico'),
+                  const Text('Mostrar gráfico'),
                   Switch(
                     value: _showChart,
                     activeColor: Theme.of(context).primaryColor,
@@ -147,10 +149,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => _showNewTransactionDialog(context),
-      ),
+      floatingActionButton: Platform.isIOS
+          ? Container()
+          : FloatingActionButton(
+              child: const Icon(Icons.add),
+              onPressed: () => _showNewTransactionDialog(context),
+            ),
     );
   }
 }

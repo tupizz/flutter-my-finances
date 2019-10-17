@@ -9,7 +9,7 @@ class NoTransactions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Container(
@@ -19,7 +19,7 @@ class NoTransactions extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Text(

@@ -26,13 +26,13 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
               // cada um desses é um estilo de texto que eu crio para replicar no aplicativo
-              subtitle: TextStyle(
+              subtitle: const TextStyle(
                 fontFamily: 'Quicksand',
                 color: Colors.grey,
                 fontSize: 14,
               ),
               // cada um desses é um estilo de texto que eu crio para replicar no aplicativo
-              title: TextStyle(
+              title: const TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.bold,
                 fontSize: 18,

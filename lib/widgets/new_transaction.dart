@@ -66,7 +66,7 @@ class _NewTransactionState extends State<NewTransaction> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: TextField(
                 autofocus: true,
                 style: TextStyle(fontSize: 14),
@@ -81,7 +81,7 @@ class _NewTransactionState extends State<NewTransaction> {
               ),
             ),
             Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: TextField(
                 controller: _amountControler,
                 style: TextStyle(fontSize: 14),
@@ -97,7 +97,7 @@ class _NewTransactionState extends State<NewTransaction> {
             ),
             Container(
               height: 70,
-              padding: EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -122,11 +122,11 @@ class _NewTransactionState extends State<NewTransaction> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             RaisedButton(
-              child: Text('Adicionar transação'),
+              child: const Text('Adicionar transação'),
               onPressed: _submitData,
               textColor: Theme.of(context).textTheme.button.color,
               color: Theme.of(context).primaryColor,

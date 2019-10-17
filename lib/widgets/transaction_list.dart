@@ -20,7 +20,7 @@ class TransactionList extends StatelessWidget {
                 itemBuilder: (ctx, index) {
                   return Card(
                     elevation: 5,
-                    margin: EdgeInsets.symmetric(
+                    margin: const EdgeInsets.symmetric(
                       vertical: 8,
                       horizontal: 8,
                     ),
@@ -29,7 +29,7 @@ class TransactionList extends StatelessWidget {
                         radius: 30,
                         child: FittedBox(
                           child: Container(
-                            padding: EdgeInsets.all(6),
+                            padding: const EdgeInsets.all(6),
                             child: Row(
                               children: <Widget>[
                                 Text(
