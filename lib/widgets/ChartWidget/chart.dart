@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import './../models/transaction.dart';
+import './../../models/transaction.dart';
 import './chart_bar.dart';
 
 class Chart extends StatelessWidget {

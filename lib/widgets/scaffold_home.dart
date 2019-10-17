@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import './new_transaction.dart';
-import './chart.dart';
-import './transaction_list.dart';
 import '../models/transaction.dart';
+
+import './NewTransactionWidget/new_transaction.dart';
+import './ChartWidget/chart.dart';
+import './TransactionListWidget/transaction_list.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -92,17 +93,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
-    final transactionListWidget = Container(
-      height: (mediaQuery.size.height -
-              appBar.preferredSize.height -
-              mediaQuery.padding.top) *
-          0.7,
-      child: TransactionList(
-        transactions: _userTransactions,
-        deleteTransactions: _deleteTransaction,
-      ),
-    );
-
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -111,40 +101,16 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             if (isLandscape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text('Mostrar gráfico'),
-                  Switch(
-                    value: _showChart,
-                    activeColor: Theme.of(context).primaryColor,
-                    onChanged: (value) {
-                      setState(() {
-                        _showChart = value;
-                      });
-                    },
-                  ),
-                ],
+              _buildLandscapeContent(
+                context,
+                mediaQuery,
+                appBar,
               ),
             if (!isLandscape)
-              Container(
-                height: (mediaQuery.size.height -
-                        appBar.preferredSize.height -
-                        mediaQuery.padding.top) *
-                    0.3,
-                child: Chart(recentTransactions: _recentTransactions),
+              _buildPortraitContent(
+                mediaQuery,
+                appBar,
               ),
-            if (!isLandscape) transactionListWidget,
-            if (isLandscape)
-              _showChart
-                  ? Container(
-                      height: (mediaQuery.size.height -
-                              appBar.preferredSize.height -
-                              mediaQuery.padding.top) *
-                          0.7,
-                      child: Chart(recentTransactions: _recentTransactions),
-                    )
-                  : transactionListWidget
           ],
         ),
       ),
@@ -155,6 +121,77 @@ class _MyHomePageState extends State<MyHomePage> {
               child: const Icon(Icons.add),
               onPressed: () => _showNewTransactionDialog(context),
             ),
+    );
+  }
+
+  /**
+   *  Celular na vertical
+   */
+  Column _buildPortraitContent(MediaQueryData mediaQuery, AppBar appBar) {
+    return Column(
+      children: <Widget>[
+        Container(
+          height: (mediaQuery.size.height -
+                  appBar.preferredSize.height -
+                  mediaQuery.padding.top) *
+              0.3,
+          child: Chart(recentTransactions: _recentTransactions),
+        ),
+        Container(
+          height: (mediaQuery.size.height -
+                  appBar.preferredSize.height -
+                  mediaQuery.padding.top) *
+              0.7,
+          child: TransactionList(
+            transactions: _userTransactions,
+            deleteTransactions: _deleteTransaction,
+          ),
+        )
+      ],
+    );
+  }
+
+  /**
+   *  Celular na horizontal
+   */
+  Column _buildLandscapeContent(
+      BuildContext context, MediaQueryData mediaQuery, AppBar appBar) {
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text('Mostrar gráfico'),
+            Switch(
+              value: _showChart,
+              activeColor: Theme.of(context).primaryColor,
+              onChanged: (value) {
+                setState(() {
+                  _showChart = value;
+                });
+              },
+            ),
+          ],
+        ),
+        _showChart
+            ? Container(
+                height: (mediaQuery.size.height -
+                        appBar.preferredSize.height -
+                        mediaQuery.padding.top) *
+                    0.7,
+                child: Chart(recentTransactions: _recentTransactions),
+              )
+            : Container(
+                height: (mediaQuery.size.height -
+                        appBar.preferredSize.height -
+                        mediaQuery.padding.top) *
+                    0.7,
+                child: TransactionList(
+                  transactions: _userTransactions,
+                  deleteTransactions: _deleteTransaction,
+                ),
+              )
+      ],
     );
   }
 }
